@@ -1,0 +1,2 @@
+# Optional pinned ffmpeg binary distribution; local installation route in README
+imageio-ffmpeg==0.6.0
