@@ -10,11 +10,12 @@
 
 ```sh
 cd learning-videos
+python3 -m pip install -r requirements.txt
 python3 -m pip install --target .build/deps --no-deps --only-binary=:all: imageio-ffmpeg==0.6.0
 python3 tools/check.py
 python3 render.py --time 37
 python3 render.py
-python3 tools/inspect.py
+python3 tools/verify_video.py
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
@@ -29,7 +30,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 - `render.py`: 指定秒のPNG、固定fpsの全フレーム生成
 - `render.py` はRGBフレームをffmpegのlibx264へ渡してMP4化
 - `tools/check.py`: 時間割・字幕幅・同一時刻の描画再現性
-- `tools/inspect.py`: MP4全フレームのデコード、映像仕様・音声なし検証、代表フレーム抽出
+- `tools/verify_video.py`: MP4全フレームのデコード、映像仕様・音声なし検証、代表フレーム抽出
 - `docs/`: 日本語台本、出典、次回制作手順、QA記録
 - `output/`: 生成物（Git管理外）
 
@@ -37,4 +38,4 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 次の依頼例: 「このリポジトリを使って、Cloud Runの認証を初心者向けに75秒、日本語字幕・音声なしで作って。公式資料を確認して、MP4とソースを納品して」。詳細は `docs/new-topic-ja.md`。
 
-このリポジトリはローカルのみ。公開・remote登録・pushは保存先確認後に行う。
+GitHubでは tanakalucky/learning-videos に非公開で保存する。共同作業者・Pagesは設定しない。完成MP4はLibraryで納品済み。動画とフレームはGit管理外の `output/` に保ち、上記コマンドで再生成する。
