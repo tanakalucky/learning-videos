@@ -20,7 +20,7 @@ def verify(name, fps_override=None):
     if manifest['duration'] != topic.DURATION or manifest['fps'] != fps or manifest['frames'] != count or manifest['size'] != [W, H]:
         raise ValueError('テーマ・fpsと書き出し記録が一致しません。再生成してください')
     ffmpeg = ffmpeg_exe()
-    result = subprocess.run([ffmpeg, '-hide_banner', '-i', str(out / 'video.mp4'), '-progress', 'pipe:1', '-f', 'null', '-'], text=True, capture_output=True, check=True)
+    result = subprocess.run([ffmpeg, '-hide_banner', '-xerror', '-i', str(out / 'video.mp4'), '-progress', 'pipe:1', '-f', 'null', '-'], text=True, capture_output=True, check=True)
     log = result.stderr
     duration = re.search(r'Duration: (\d+):(\d+):(\d+\.\d+)', log)
     rate = re.search(r'(\d+(?:\.\d+)?) fps', log)
